@@ -34,3 +34,42 @@ function connectMQTT() {
 
   client.connect(options);
 }
+
+// Menangani data yang masuk
+client.onMessageArrived = (message) => {
+  if (message.destinationName === "MIAUW/sensor/distance") {
+    const val = message.payloadString;
+    document.getElementById("distance-value").innerText = val;
+
+    const statusText = document.getElementById("distance-status");
+    const buzzerIndicator = document.getElementById("buzzer-indicator");
+    const buzzerText = document.getElementById("buzzer-text");
+    const dist = parseFloat(val);
+
+    if (dist < 5) {
+      statusText.innerText = "Objek Terlalu Dekat!";
+      statusText.style.color = "#ef4444";
+
+      // Update UI Buzzer Aktif
+      buzzerIndicator.className = "buzzer-status active-alarm";
+      buzzerText.innerText = "ON (ALARM)";
+    } else {
+      statusText.innerText = "Aman";
+      statusText.style.color = "#22c55e";
+
+      // Update UI Buzzer Mati
+      buzzerIndicator.className = "buzzer-status inactive";
+      buzzerText.innerText = "OFF";
+    }
+  }
+};
+
+function updateNavStatus(status) {
+  const box = document.getElementById("connection-status");
+  document.getElementById("status-text").innerText = status
+    ? "Connected"
+    : "Disconnected";
+  box.className = status ? "status-box connected" : "status-box disconnected";
+}
+
+window.onload = connectMQTT;
