@@ -1,0 +1,215 @@
+:root {
+  --bg-color: #0b1120;
+  --card-bg: #1e293b;
+  --accent-blue: #38bdf8;
+  --text-light: #f8fafc;
+  --danger: #ef4444;
+  --success: #22c55e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-light);
+}
+
+/* Navbar Style */
+.navbar {
+  background-color: var(--card-bg);
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo span {
+  color: var(--accent-blue);
+}
+
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.connected {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+.disconnected {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+/* Main Dashboard */
+.dashboard-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.control-card {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #475569; /* Warna default mati */
+  transition: 0.3s;
+}
+
+.card-icon.active {
+  color: #fbbf24; /* Warna kuning saat nyala */
+  filter: drop-shadow(0 0 15px #fbbf24);
+}
+
+/* Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-top: 20px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #334155;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-blue);
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.container-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.control-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: 200px; /* Ukuran lebih kecil agar cukup 3 kartu */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Tambahkan di bagian bawah style.css */
+.sensor-card {
+  min-width: 300px;
+  padding: 3rem !important;
+}
+
+.distance-display {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--accent-blue);
+  margin: 15px 0;
+}
+
+.distance-display small {
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+#distance-status {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.buzzer-status {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.inactive {
+  background: rgba(71, 85, 105, 0.2);
+  color: #94a3b8;
+}
+
+.active-alarm {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  animation: blink-animation 0.5s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
